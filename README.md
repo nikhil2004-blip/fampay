@@ -3,7 +3,6 @@
 
 # FamPay Flutter Assignment
 
-⏰ **Deadline:** 48 Hours from receiving assignment
 
 ---
 ## 📦 Download APK
@@ -200,6 +199,7 @@ url_launcher: ^6.1.0
 ---
 ```
 ***
+
 
 
 
