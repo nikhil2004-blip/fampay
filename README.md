@@ -83,22 +83,55 @@ https://polyjuice.kong.fampay.co/mock/famapp/feed/home_section/?slugs=famx-paypa
 ## 📂 Project Structure
 
 
-lib/
-├── data/
-│   ├── models/        # API response models
-│   ├── repository/    # Data repository and network services
-│   └── services/      # API/network services
-├── presentation/
-│   ├── cards/         # Widgets for each card type
-│   ├── screens/       # Screens embedding the container
-│   └── widgets/       # Reusable UI components
-├── state/
-│   └── providers/     # Provider state management
-└── utils/             # Constants and helper functions
+lib
+|
+|- data
+|  |
+|  |- models
+|  |  |- card.dart
+|  |  |- card_group.dart
+|  |  |- card_image.dart
+|  |  |- cta.dart
+|  |  |- entity.dart
+|  |  |- gradient.dart
+|  |
+|  |- repository
+|  |  |- card_repository.dart
+|  |
+|  |- services
+|     |- api_service.dart
+|
+|- presentation
+|  |
+|  |- cards
+|  |  |- card_factory.dart
+|  |  |- hc1_small_display_card.dart
+|  |  |- hc3_big_display_card.dart
+|  |  |- hc5_image_card.dart
+|  |  |- hc6_small_card_with_arrow.dart
+|  |  |- hc9_dynamic_width_card.dart
+|  |
+|  |- screens
+|  |  |- feed_screen.dart
+|  |  |- home_screen.dart
+|  |
+|  |- widgets
+|     |- card_factory.dart
+|
+|- routes
+|  |- app_router.dart
+|
+|- state
+|  |- app_state.dart
+|  |- home_provider.dart
+|
+|- main.dart
 
 
----
+
+
 ```
+---
 ## ⚙️ Setup & Installation
 
 ### Prerequisites
@@ -199,6 +232,7 @@ url_launcher: ^6.1.0
 ---
 ```
 ***
+
 
 
 
