@@ -1,7 +1,6 @@
 
 ***
 
-```markdown
 # FamPay Flutter Assignment
 
 ⏰ **Deadline:** 48 Hours from receiving assignment
@@ -43,9 +42,9 @@ The container is **plug-and-play**, meaning it can be embedded in any screen/wid
 ## 🌐 API Integration
 
 **API Endpoint:**  
-```
+
 https://polyjuice.kong.fampay.co/mock/famapp/feed/home_section/?slugs=famx-paypage
-```
+
 
 ### Response Structure
 
@@ -80,7 +79,7 @@ https://polyjuice.kong.fampay.co/mock/famapp/feed/home_section/?slugs=famx-paypa
 
 ## 📂 Project Structure
 
-```
+
 lib/
 ├── data/
 │   ├── models/        # API response models
@@ -93,7 +92,7 @@ lib/
 ├── state/
 │   └── providers/     # Provider state management
 └── utils/             # Constants and helper functions
-```
+
 
 ---
 
@@ -107,7 +106,7 @@ lib/
 
 ### Installation Steps
 
-```
+
 # Clone the repository
 git clone https://github.com/nikhil2004-blip/fampay.git
 cd fampay
@@ -117,7 +116,7 @@ flutter pub get
 
 # Run the app
 flutter run
-```
+
 
 ---
 
@@ -126,12 +125,12 @@ flutter run
 ### ContextualCardsContainer
 A plug-and-play widget that can be embedded anywhere:
 
-```
+
 ContextualCardsContainer(
 onCardTap: (url) => handleDeepLink(url),
 onRefresh: () => refreshCards(),
 )
-```
+
 
 ### HC3 Card Actions
 - **Remind Later**: Temporarily remove card until next app restart  
@@ -156,10 +155,10 @@ onRefresh: () => refreshCards(),
 
 ## 🧪 Testing
 
-```
+
 # Run unit tests
 flutter test
-```
+
 
 - Unit tests → Models & Repository  
 - Widget tests → Card UI validation  
@@ -170,20 +169,20 @@ flutter test
 ## 📦 Build
 
 ### Android APK
-```
+
 flutter build apk --release
-```
+
 
 ### iOS IPA
-```
+
 flutter build ios --release
-```
+
 
 ---
 
 ## 📚 Dependencies
 
-```
+
 dependencies:
 flutter:
 sdk: flutter
@@ -192,10 +191,11 @@ http: ^0.13.0
 shared_preferences: ^2.0.0
 cached_network_image: ^3.2.0
 url_launcher: ^6.1.0
-```
+
 
 ---
 ```
 
 ***
+
 
