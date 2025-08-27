@@ -76,7 +76,7 @@ https://polyjuice.kong.fampay.co/mock/famapp/feed/home_section/?slugs=famx-paypa
 > ⚠️ Any extra params from API can be ignored.
 
 ---
-
+``` 
 ## 📂 Project Structure
 
 
@@ -95,7 +95,7 @@ lib/
 
 
 ---
-
+```
 ## ⚙️ Setup & Installation
 
 ### Prerequisites
@@ -182,7 +182,7 @@ flutter build ios --release
 
 ## 📚 Dependencies
 
-
+```
 dependencies:
 flutter:
 sdk: flutter
@@ -194,7 +194,8 @@ url_launcher: ^6.1.0
 
 
 ---
-
+```
 ***
+
 
 
