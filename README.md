@@ -73,7 +73,7 @@ https://polyjuice.kong.fampay.co/mock/famapp/feed/home_section/?slugs=famx-paypa
   - `text`  
   - optional: `color`, `url`, `font_style`  
 
-> ⚠️ Any extra params from API can be ignored.
+
 
 ---
 ``` 
@@ -196,6 +196,7 @@ url_launcher: ^6.1.0
 ---
 ```
 ***
+
 
 
 
