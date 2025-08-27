@@ -43,5 +43,4 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
-# Ignore API service with sensitive keys
-lib/data/services/api_service.dart
+

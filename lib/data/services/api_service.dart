@@ -6,7 +6,7 @@ class ApiService {
   static const String baseUrl =
       "https://polyjuice.kong.fampay.co/mock/famapp/feed/home_section/?slugs=famx-paypage";
 
-  String feedSlug = "famx-paypage"; // ✅ AppBar title from top-level feed
+  String feedSlug = "famx-paypage"; //  AppBar title from top-level feed
   String? appIconUrl; // Optional icon
 
   Future<List<CardGroup>> fetchCardGroups() async {
