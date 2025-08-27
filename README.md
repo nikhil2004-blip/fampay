@@ -6,6 +6,10 @@
 ⏰ **Deadline:** 48 Hours from receiving assignment
 
 ---
+## 📦 Download APK
+
+You can download the latest APK here:  
+[FamPayApp.apk](apk/FamPayApp.apk)
 
 ## 📌 Project Overview
 
@@ -196,6 +200,7 @@ url_launcher: ^6.1.0
 ---
 ```
 ***
+
 
 
 
