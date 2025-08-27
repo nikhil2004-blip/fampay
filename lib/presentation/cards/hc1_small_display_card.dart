@@ -12,7 +12,6 @@ class HC1SmallDisplayCard extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final isLandscape = size.width > size.height;
 
-    // 🔑 Adjust height based on orientation
     final double cardHeight =
     isLandscape ? size.height * 0.25 : size.height * 0.18;
 
@@ -21,7 +20,7 @@ class HC1SmallDisplayCard extends StatelessWidget {
       child: _buildCard(
         group.cards.isNotEmpty ? group.cards.first : null,
         context,
-        size.width, // full width
+        size.width,
         cardHeight,
       ),
     );
@@ -31,11 +30,17 @@ class HC1SmallDisplayCard extends StatelessWidget {
       CardModel? card, BuildContext context, double width, double height) {
     if (card == null) return const SizedBox.shrink();
 
+    // Use API text exactly: first line = formatted_title, second line = formatted_description
+    String firstLine = card.formattedTitle?.entities.isNotEmpty == true
+        ? card.formattedTitle!.entities[0].text ?? ""
+        : "";
+    String secondLine = card.formattedDescription?.entities.isNotEmpty == true
+        ? card.formattedDescription!.entities[0].text ?? ""
+        : "";
+
     return GestureDetector(
       onTap: () {
-        if (card.url != null) {
-          debugPrint("Tapped on ${card.url}");
-        }
+        if (card.url != null) debugPrint("Tapped on ${card.url}");
       },
       child: Container(
         width: width,
@@ -49,7 +54,7 @@ class HC1SmallDisplayCard extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            // 👤 Avatar
+            // 👤 Icon/Avatar
             Padding(
               padding: const EdgeInsets.all(12.0),
               child: CircleAvatar(
@@ -64,7 +69,7 @@ class HC1SmallDisplayCard extends StatelessWidget {
               ),
             ),
 
-            // 📑 Texts (Bold Heading + API Name)
+            // 📑 Texts from API
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
@@ -72,9 +77,8 @@ class HC1SmallDisplayCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Bold Heading
                     Text(
-                      "This is a Small Card",
+                      firstLine,
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
@@ -83,12 +87,9 @@ class HC1SmallDisplayCard extends StatelessWidget {
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
-
                     SizedBox(height: height * 0.05),
-
-                    // API Name fetched from API
                     Text(
-                      card.title ?? "Unknown",
+                      secondLine,
                       style: TextStyle(
                         color: Colors.white70,
                         fontSize: height * 0.12,

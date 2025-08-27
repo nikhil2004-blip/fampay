@@ -26,8 +26,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // 👇 Dynamically get title from HomeProvider
+    final appTitle = context.select<HomeProvider, String>(
+          (provider) => provider.appTitle,
+    );
+
     return MaterialApp(
-      title: 'Contextual Cards',
+      title: appTitle,
+      debugShowCheckedModeBanner: false,// dynamically from API
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

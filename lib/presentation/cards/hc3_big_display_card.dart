@@ -66,7 +66,7 @@ class _BigCardItemState extends State<_BigCardItem> {
         },
         onLongPress: _toggleActions,
         child: SizedBox(
-          height: 300, // ⬅️ Increased height
+          height: 300,
           width: cardWidth,
           child: Stack(
             children: [
@@ -92,12 +92,13 @@ class _BigCardItemState extends State<_BigCardItem> {
                   decoration: BoxDecoration(
                     color: card.bgColor != null
                         ? Color(int.parse(card.bgColor!.replaceFirst("#", "0xff")))
-                        : const Color(0xFF4C63D2),
+                        : const Color(0xFF4349AA)
+                    ,
                     borderRadius: BorderRadius.circular(16),
                     image: card.bgImage?.imageUrl != null
                         ? DecorationImage(
                       image: NetworkImage(card.bgImage!.imageUrl!),
-                      fit: BoxFit.cover,
+                      fit: BoxFit.contain,
                     )
                         : null,
                     boxShadow: [
@@ -111,11 +112,11 @@ class _BigCardItemState extends State<_BigCardItem> {
                   child: LayoutBuilder(
                     builder: (context, constraints) {
                       return Padding(
-                        padding: const EdgeInsets.all(24.0),
+                        padding: const EdgeInsets.fromLTRB(24, 90, 24, 16), // more top padding
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            // Icon (Responsive)
+                            // Icon (top-right)
                             Align(
                               alignment: Alignment.topRight,
                               child: card.icon?.imageUrl != null
@@ -149,43 +150,37 @@ class _BigCardItemState extends State<_BigCardItem> {
                                   : const SizedBox.shrink(),
                             ),
 
-                            const SizedBox(height: 16),
+                            const SizedBox(height: 8), // reduce space between icon & title
 
-                            // Title Section
+                            // Title & Subtitle
                             if (card.title != null) ...[
                               Text(
                                 "Big display card",
-                                style: Theme.of(context).textTheme.headlineSmall?.copyWith(
-                                  color: const Color(0xFFFFB800),
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 28,
-                                  height: 1.2,
-                                ),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .headlineSmall
+                                    ?.copyWith(color: const Color(0xFFFFB800), fontWeight: FontWeight.w700),
                               ),
-                              const SizedBox(height: 4),
                               Text(
                                 "with action",
-                                style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 24,
-                                  height: 1.2,
-                                ),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .titleLarge
+                                    ?.copyWith(color: Colors.white, fontWeight: FontWeight.w600),
                               ),
                             ],
 
-                            const Spacer(),
+                            const Spacer(), // pushes bottom section down
 
                             // Subtitle
                             Text(
                               "This is a sample text for the subtitle that you can add to contextual cards",
-                              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                                color: Colors.white.withOpacity(0.9),
-                                fontSize: 12,
-                                height: 1.4,
-                              ),
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(color: Colors.white.withOpacity(0.9)),
                             ),
-                            const SizedBox(height: 16),
+                            const SizedBox(height: 8), // reduce bottom spacing
 
                             // CTA Button
                             if (card.ctas != null && card.ctas!.isNotEmpty)
@@ -208,10 +203,7 @@ class _BigCardItemState extends State<_BigCardItem> {
                                   onPressed: () => debugPrint("CTA tapped: ${card.ctas![0].url}"),
                                   child: Text(
                                     card.ctas![0].text ?? "Action",
-                                    style: const TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 16,
-                                    ),
+                                    style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
                                   ),
                                 ),
                               ),

@@ -13,7 +13,26 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Contextual Cards"),
+        centerTitle: true,
+        title: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // ✅ Show icon if available
+            if (provider.appIconUrl != null)
+              Image.network(
+                provider.appIconUrl!,
+                width: 32,
+                height: 32,
+                errorBuilder: (_, __, ___) => const Icon(Icons.apps),
+              ),
+            if (provider.appIconUrl != null) const SizedBox(width: 8),
+            // ✅ Show dynamic title
+            Text(
+              provider.appTitle,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
       ),
       body: RefreshIndicator(
         onRefresh: () async {
@@ -21,12 +40,12 @@ class HomeScreen extends StatelessWidget {
         },
         child: Builder(
           builder: (_) {
-            // 🔹 Handle loading state
+            // 🔹 Loading state
             if (provider.state == HomeState.loading) {
               return const Center(child: CircularProgressIndicator());
             }
 
-            // 🔹 Handle error state
+            // 🔹 Error state
             if (provider.state == HomeState.error) {
               return Center(
                 child: Text(
@@ -36,23 +55,23 @@ class HomeScreen extends StatelessWidget {
               );
             }
 
-            // 🔹 Handle loaded state
+            // 🔹 Loaded state
             if (provider.state == HomeState.loaded) {
-              if (provider.cardGroups == null || provider.cardGroups!.isEmpty) {
+              if (provider.cardGroups.isEmpty) {
                 return const Center(child: Text("No cards available"));
               }
 
               return ListView.builder(
                 padding: const EdgeInsets.all(12),
-                itemCount: provider.cardGroups!.length,
+                itemCount: provider.cardGroups.length,
                 itemBuilder: (context, index) {
-                  final group = provider.cardGroups![index];
+                  final group = provider.cardGroups[index];
                   return CardFactory.buildCardGroup(group, provider);
                 },
               );
             }
 
-            // 🔹 Fallback for any unexpected state
+            // 🔹 Fallback
             return const SizedBox.shrink();
           },
         ),

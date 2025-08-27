@@ -21,13 +21,22 @@ class HC6SmallCardWithArrow extends StatelessWidget {
       ),
     )
         : Column(
-      children: group.cards
-          .map((card) => _buildCard(card, context))
-          .toList(),
+      children:
+      group.cards.map((card) => _buildCard(card, context)).toList(),
     );
   }
 
   Widget _buildCard(CardModel card, BuildContext context) {
+    // Use formattedTitle from API if available
+    String displayText = "Small card with arrow";
+    if (card.formattedTitle?.entities.isNotEmpty ?? false) {
+      displayText = card.formattedTitle!.entities
+          .map((e) => e.text ?? "")
+          .join(" ");
+    } else if (card.title != null && card.title!.trim().isNotEmpty) {
+      displayText = card.title!;
+    }
+
     return GestureDetector(
       onTap: () {
         if (card.url != null) {
@@ -35,7 +44,7 @@ class HC6SmallCardWithArrow extends StatelessWidget {
         }
       },
       child: Container(
-        height: 72, // fixed card height like in Figma
+        height: 72,
         margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 16),
         padding: const EdgeInsets.symmetric(horizontal: 16),
         decoration: BoxDecoration(
@@ -76,7 +85,7 @@ class HC6SmallCardWithArrow extends StatelessWidget {
             // Title Text
             Expanded(
               child: Text(
-                card.title ?? "Small card with arrow",
+                displayText,
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
@@ -86,8 +95,7 @@ class HC6SmallCardWithArrow extends StatelessWidget {
             ),
 
             // Right Arrow
-            const Icon(Icons.arrow_forward_ios,
-                size: 18, color: Colors.black54),
+            const Icon(Icons.arrow_forward_ios, size: 18, color: Colors.black54),
           ],
         ),
       ),
